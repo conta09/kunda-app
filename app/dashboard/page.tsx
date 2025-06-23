@@ -1,10 +1,11 @@
 import React from 'react'
 import BottomBar from '../components/BottomBar'
+import TopBar from '../components/TopBar'
 const page = () => {
   return (
     <div>
-    
-    <BottomBar />
+      <TopBar />
+      <BottomBar />
     </div>
   )
 }
