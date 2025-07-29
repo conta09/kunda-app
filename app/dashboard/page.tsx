@@ -1,24 +1,23 @@
-// app/page.tsx
 import React from 'react';
 import TopBar from '../components/TopBar';
-import SwipeCarousel from '../components/SwipeCards';
+import ActiveNowGrid from '../components/ActiveNowGrid';
+import VibeRoomList from '../components/VibeRoomList';
+
 const HomePage = () => {
-  // Assuming your images are in the public folder
   const profiles = [
-    { id: 1, name: 'Tywin lannister', info: 'Loves music', img: '/img1.jpg' },
-  { id: 2, name: 'Basterd of winterfell', info: 'Enjoys hiking', img: '/img2.jpg' },
-  { id: 3, name: 'robert baratheon', info: 'Coffee enthusiast', img: '/img3.jpg' },
+    { id: 1, name: 'Tywin Lannister', info: 'Loves music', img: '/img1.jpg' },
+    { id: 2, name: 'Bastard of Winterfell', info: 'Enjoys hiking', img: '/img2.jpg' },
+    { id: 3, name: 'Robert Baratheon', info: 'Coffee enthusiast', img: '/img3.jpg' },
   ];
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-white to-pink-100">
       <TopBar />
-      
+
       <main className="flex-1 container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-center mb-8">Discover Profiles</h1>
-        <SwipeCarousel profiles={profiles} />
+        <ActiveNowGrid profiles={profiles} />
+        <VibeRoomList />
       </main>
-      
     </div>
   );
 };
