@@ -14,7 +14,7 @@ interface Props {
 
 const ProfileGrid: React.FC<Props> = ({ profiles }) => {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 px-4">
       {profiles.map((p) => (
         <div key={p.id} className="relative bg-white rounded-2xl overflow-hidden shadow-md">
           {p.isNew && (
@@ -22,7 +22,7 @@ const ProfileGrid: React.FC<Props> = ({ profiles }) => {
               New
             </div>
           )}
-          <img src={p.img} alt={p.name} className="w-full h-48 object-cover" />
+          <img src={p.img} alt={p.name} className="w-full h-68 object-cover" />
           <div className="p-2">
             <h3 className="font-semibold text-sm">{p.name}</h3>
             <p className="text-xs text-gray-500">{p.info}</p>

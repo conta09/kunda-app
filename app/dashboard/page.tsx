@@ -1,12 +1,12 @@
+// app/dashboard/page.tsx
 'use client';
-import React, { useState } from 'react';
-import TopBar from '../components/TopBar';
-import TabsBar from '../components/TabsBar';
+import { useDashboard } from '../context/DashboardContext';
 import ProfileGrid from '../components/ProfileGrid';
 import VibeRoomList from '../components/VibeRoomList';
+import TopBar from '../components/TopBar';
 
-const HomePage = () => {
-  const [activeTab, setActiveTab] = useState('discover');
+const DashboardPage = () => {
+  const { activeTab } = useDashboard();
 
   const profiles = [
     { id: 1, name: 'Lolaa, 23', info: 'Mitseró', img: '/img1.jpg', isNew: true },
@@ -16,24 +16,36 @@ const HomePage = () => {
     { id: 5, name: 'Nadia, 21', info: 'Kigali', img: '/img1.jpg', isNew: true },
   ];
 
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'discover':
+        return <ProfileGrid profiles={profiles} />;
+      case 'match':
+        return <VibeRoomList />;
+      case 'chats':
+        return <div className="text-center text-gray-500 py-8">No messages yet</div>;
+      case 'live':
+        return <div className="text-center text-gray-500 py-8">Live feature coming soon</div>;
+      case 'credits':
+        return <div className="text-center text-gray-500 py-8">Credits balance: 100</div>;
+      case 'profile':
+        return <div className="text-center text-gray-500 py-8">Profile settings</div>;
+      default:
+        return <ProfileGrid profiles={profiles} />;
+    }
+  };
+
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
+    <div className="w-full">
       <TopBar />
-
       <div className="sticky top-0 bg-white z-10 px-4 py-2 shadow">
-        <h2 className="text-2xl font-bold text-center mb-2">Discover</h2>
-        <TabsBar activeTab={activeTab} setActiveTab={setActiveTab} />
+        <h2 className="text-2xl font-bold text-center mb-2 capitalize">{activeTab}</h2>
       </div>
-
-      <main className="flex-1 overflow-y-auto px-4 py-4">
-        {activeTab === 'discover' && <ProfileGrid profiles={profiles} />}
-        {activeTab === 'likes' && <VibeRoomList />}
-        {activeTab === 'views' && (
-          <div className="text-center text-gray-500">No views yet. Try being more active 😉</div>
-        )}
-      </main>
+      <div className="p-4 mb-16 md:mb-0">
+        {renderContent()}
+      </div>
     </div>
   );
 };
 
-export default HomePage;
+export default DashboardPage;
